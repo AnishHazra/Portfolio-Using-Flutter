@@ -42,8 +42,8 @@ class _HomePageState extends State<HomePage> {
     'ExpressJS',
     'Firebase',
   ];
-  final linkedinUrl =
-      Uri.parse('https://www.linkedin.com/in/anish-hazra-667396176/');
+  final youtubeUrl =
+      Uri.parse('https://www.youtube.com/channel/UCdHwumYiNgpvTF2qctvVfKQ');
   final githubUrl = Uri.parse('https://github.com/AnishHazra');
   final instagramUrl = Uri.parse('https://www.instagram.com/_dev.anish/');
   @override
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                   background: Container(
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/anish.jpg'),
+                        image: AssetImage('assets/images/L.jpg'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -259,6 +259,34 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "Projects",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          height: 200,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              makeProject(image: 'assets/images/project-2.png'),
+                              makeProject(image: 'assets/images/project-2.png'),
+                              makeProject(image: 'assets/images/project-2.png'),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 80,
+                        )
                       ],
                     ),
                   ),
@@ -305,16 +333,58 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               GButton(
-                icon: FontAwesomeIcons.linkedin,
-                text: 'Linkedin',
+                icon: FontAwesomeIcons.youtube,
+                text: 'Youtube',
                 onPressed: () {
                   launchUrl(
-                    linkedinUrl,
+                    youtubeUrl,
                     mode: LaunchMode.inAppWebView,
                   );
                 },
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  makeProject({image}) {
+    return AspectRatio(
+      aspectRatio: 1.5 / 1,
+      child: Container(
+        margin: const EdgeInsets.only(right: 20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            image: AssetImage(image),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomRight,
+              colors: [
+                Colors.black.withOpacity(.9),
+                Colors.black.withOpacity(.3),
+              ],
+            ),
+          ),
+          child: Align(
+            child: InkWell(
+              onTap: () {
+                launchUrl(
+                  githubUrl,
+                  mode: LaunchMode.inAppWebView,
+                );
+              },
+              child: const Icon(
+                FontAwesomeIcons.github,
+                color: Colors.white,
+                size: 50,
+              ),
+            ),
           ),
         ),
       ),
